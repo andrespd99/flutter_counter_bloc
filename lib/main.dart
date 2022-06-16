@@ -1,22 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter/widgets.dart';
 
-void main() => runApp(MyApp());
+import 'app.dart';
+import 'counter_observer.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Hello World'),
-          ),
-        ),
-      ),
-    );
-  }
+void main() {
+  BlocOverrides.runZoned(
+    () => runApp(const CounterApp()),
+    blocObserver: CounterObserver(),
+  );
 }
